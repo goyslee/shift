@@ -1,0 +1,515 @@
+<% include ../partials/header %> <% include ../partials/header2 %>
+<div class="container">
+  <h1 class="myh"><%= allocatorinfo.name %></h1>
+</div>
+<div class="container container1 centered">
+  <div class="pick noprint">
+    <%var picker = 0;%>
+    <!-- <h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Pick Manager:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/pickmanagershow"><span class="noprint">Pick Manager:</span></a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundPickmanager.forEach(function(foundPickmanager){ %>
+		<%# if (foundPickmanager.author.id.equals(allocatorinfo.id) && foundPickmanager.colleagueId === foundColleague.id) { %>
+		<p class="capitalized"><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %> -->
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> Pick: <% } else { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/pickershow">Pick:</a>
+      <% } %>
+    </h3>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundPicker.forEach(function(foundPicker){ %> <% if
+      (foundPicker.author.id.equals(allocatorinfo.id) && foundPicker.colleagueId
+      === foundColleague.id) { %> <% picker++; %> <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= picker %></p>
+    </div>
+    <%# office ide %>
+    <!-- <h3>
+		<%# if (foundOffice) { %>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Office:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/officeshow">Office:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundOffice.forEach(function(foundOffice){ %>
+		<%# if (foundOffice.author.id.equals(allocatorinfo.id) && foundOffice.colleagueId === foundColleague.id) { %>
+		<p class="capitalized"><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %>
+		<%# } %> -->
+    <!-- <h3>
+		<%# if (foundRecoup) { %>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Checking:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/recoupshow">Checking:</a>
+		<%# } %>
+		</h3>
+		<%# foundRecoup.forEach(function(foundRecoup){ %>
+		<%# if (foundRecoup.author.id.equals(allocatorinfo.id)) { %>
+		<p><a href="/colleagues/<%#= foundRecoup.colleagueId %>" title=""><%#= foundRecoup.text %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# } %> -->
+  </div>
+  <div class="tip">
+    <h3>
+      <% var driver = 0;%> <% if (allocatorinfo.isAllocated == true) { %> Reach
+      Truck: <% } else { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/drivershow">Reach Truck:</a>
+      <% } %>
+    </h3>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundDriver.forEach(function(foundDriver){ %> <% if
+      (foundDriver.author.id.equals(allocatorinfo.id) && foundDriver.colleagueId
+      === foundColleague.id) { %> <% driver++; %>
+      <p class="colleagues">
+        <a href="/colleagues/<%= foundColleague.id %>" title=""
+          ><%= foundColleague.fullName %> <% if (foundColleague.ten &&
+          foundColleague.ten == true) { -%> (10pm) <% } else { -%> <% } -%>
+        </a>
+      </p>
+      <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= driver %></p>
+    </div>
+    <% var tipmen = 0; %>
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> Receiving: <% } else { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/tippershow">Receiving:</a>
+      <% } %>
+    </h3>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundTipper.forEach(function(foundTipper){ %> <% if
+      (foundTipper.author.id.equals(allocatorinfo.id) && foundTipper.colleagueId
+      === foundColleague.id) { %> <%tipmen++;%>
+      <p class="colleagues">
+        <a href="/colleagues/<%= foundColleague.id %>" title=""
+          ><%= foundColleague.fullName %> <% if (foundColleague.ten &&
+          foundColleague.ten == true) { -%> (10pm) <% } else { -%> <% } -%>
+        </a>
+      </p>
+      <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= tipmen %></p>
+    </div>
+    <% var counterBalance = 0; %>
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> Counter Balance: <% } else
+      { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/counterBalanceshow"
+        >Counter Balance:</a
+      >
+      <% } %>
+    </h3>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundCounterBalance.forEach(function(foundCounterBalance){ %> <% if
+      (foundCounterBalance.author.id.equals(allocatorinfo.id) &&
+      foundCounterBalance.colleagueId === foundColleague.id) { %> <%
+      counterBalance++; %>
+      <p class="colleagues">
+        <a href="/colleagues/<%= foundColleague.id %>" title=""
+          ><%= foundColleague.fullName %> <% if (foundColleague.ten &&
+          foundColleague.ten == true) { -%> (10pm) <% } else { -%> <% } -%>
+        </a>
+      </p>
+      <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= counterBalance %></p>
+    </div>
+    <% var training = 0; %>
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> Training: <% } else { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/trainingshow">Training:</a>
+      <% } %>
+    </h3>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundTraining.forEach(function(foundTraining){ %> <% if
+      (foundTraining.author.id.equals(allocatorinfo.id) &&
+      foundTraining.colleagueId === foundColleague.id) { %> <% training++; %>
+      <p class="colleagues">
+        <a href="/colleagues/<%= foundColleague.id %>" title=""
+          ><%= foundColleague.fullName %> <% if (foundColleague.ten &&
+          foundColleague.ten == true) { -%> (10pm) <% } else { -%> <% } -%>
+        </a>
+      </p>
+      <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= training %></p>
+    </div>
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> First Aiders: <% } else {
+      %>
+      <a href="#">First Aiders:</a>
+      <% } %>
+    </h3>
+
+    <!-- FIRST AIDER -->
+    <% foundColleague.forEach(function(foundColleague){ %> <%
+    foundTraining.forEach(function(foundTraining){ %> <% if
+    (foundTraining.author.id.equals(allocatorinfo.id) &&
+    foundTraining.colleagueId === foundColleague.id && allocatorinfo.shift ===
+    foundColleague.shift && foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %> <%
+    foundColleague.forEach(function(foundColleague){ %> <%
+    foundTipper.forEach(function(foundTipper){ %> <% if
+    (foundTipper.author.id.equals(allocatorinfo.id) && foundTipper.colleagueId
+    === foundColleague.id && allocatorinfo.shift === foundColleague.shift &&
+    foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %> <%
+    foundColleague.forEach(function(foundColleague){ %> <%
+    foundPicker.forEach(function(foundPicker){ %> <% if
+    (foundPicker.author.id.equals(allocatorinfo.id) && foundPicker.colleagueId
+    === foundColleague.id && allocatorinfo.shift === foundColleague.shift &&
+    foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %> <%
+    foundColleague.forEach(function(foundColleague){ %> <%
+    foundDekit.forEach(function(foundDekit){ %> <% if
+    (foundDekit.author.id.equals(allocatorinfo.id) && foundDekit.colleagueId ===
+    foundColleague.id && allocatorinfo.shift === foundColleague.shift &&
+    foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %> <%
+    foundColleague.forEach(function(foundColleague){ %> <%
+    foundDriver.forEach(function(foundDriver){ %> <% if
+    (foundDriver.author.id.equals(allocatorinfo.id) && foundDriver.colleagueId
+    === foundColleague.id && allocatorinfo.shift === foundColleague.shift &&
+    foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %> <%
+    foundColleague.forEach(function(foundColleague){ %> <%
+    foundLoader.forEach(function(foundLoader){ %> <% if
+    (foundLoader.author.id.equals(allocatorinfo.id) && foundLoader.colleagueId
+    === foundColleague.id && allocatorinfo.shift === foundColleague.shift &&
+    foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %> <%
+    foundColleague.forEach(function(foundColleague){ %> <%
+    foundCounterBalance.forEach(function(foundCounterBalance){ %> <% if
+    (foundCounterBalance.author.id.equals(allocatorinfo.id) &&
+    foundCounterBalance.colleagueId === foundColleague.id && allocatorinfo.shift
+    === foundColleague.shift && foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %> <%
+    foundColleague.forEach(function(foundColleague){ %> <%
+    foundBanksman.forEach(function(foundBanksman){ %> <% if
+    (foundBanksman.author.id.equals(allocatorinfo.id) &&
+    foundBanksman.colleagueId === foundColleague.id && allocatorinfo.shift ===
+    foundColleague.shift && foundColleague.firstAider == true) { %>
+    <p>
+      <a href="/colleagues/<%= foundColleague.id %>" title=""
+        ><%= foundColleague.fullName %></a
+      >
+    </p>
+    <% } %> <% }); %> <% }); %>
+
+    <!-- <div class="scissor_lift"> -->
+    <!-- <h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Chill Manager:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/scissor_liftmanagershow"><span class="noprint">Chill Manager:</span></a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundScissor_liftmanager.forEach(function(foundScissor_liftmanager){ %>
+		<%# if (foundScissor_liftmanager.author.id.equals(allocatorinfo.id) && foundScissor_liftmanager.colleagueId === foundColleague.id) { %>
+		<p class="capitalized"><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %> -->
+    <!-- <h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Chill Pick:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/scissor_liftshow">Chill Pick:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundScissor_lift.forEach(function(foundScissor_lift){ %>
+		<%# if (foundScissor_lift.author.id.equals(allocatorinfo.id) && foundScissor_lift.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %> -->
+    <!-- </div> -->
+    <!-- <div class="trucks"> TRUCKS***-->
+    <!-- <h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		G. In Manager:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/truckmanagershow"><span class="noprint">G. In Manager:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundTruckmanager.forEach(function(foundTruckmanager){ %>
+		<%# if (foundTruckmanager.author.id.equals(allocatorinfo.id) && foundTruckmanager.colleagueId === foundColleague.id) { %>
+		<p class="capitalized"><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %> -->
+
+    <!-- </div> TRUCKS****-->
+    <!-- <h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Scissor lift:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/rtshow">Scissor lift:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundRt.forEach(function(foundRt){ %>
+		<%# if (foundRt.author.id.equals(allocatorinfo.id) && foundRt.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %>
+		<h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Run:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/runnershow">Run:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundRunner.forEach(function(foundRunner){ %>
+		<%# if (foundRunner.author.id.equals(allocatorinfo.id) && foundRunner.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %>
+	-->
+
+    <!-- <h3> 
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Union:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/unionshow">Union:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundUnion.forEach(function(foundUnion){ %>
+		<%# if (foundUnion.author.id.equals(allocatorinfo.id) && foundUnion.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %> -->
+  </div>
+  <div class="loading">
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> Loading: <% } else { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/loadershow">Loading:</a>
+      <% } %>
+    </h3>
+    <% var loading = 0; %>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundLoader.forEach(function(foundLoader){ %> <% if
+      (foundLoader.author.id.equals(allocatorinfo.id) && foundLoader.colleagueId
+      === foundColleague.id) { %> <% loading++; %>
+      <p class="colleagues">
+        <a href="/colleagues/<%= foundColleague.id %>" title=""
+          ><%= foundColleague.fullName %> <% if (foundColleague.ten &&
+          foundColleague.ten == true) { -%> (10pm) <% } else { -%> <% } -%>
+        </a>
+      </p>
+      <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= loading %></p>
+    </div>
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> Banksman: <% } else { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/banksmanshow">Banksman:</a>
+      <% } %>
+    </h3>
+    <% var banksman = 0; %>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundBanksman.forEach(function(foundBanksman){ %> <% if
+      (foundBanksman.author.id.equals(allocatorinfo.id) &&
+      foundBanksman.colleagueId === foundColleague.id) { %> <% banksman++; %>
+      <p class="colleagues">
+        <a href="/colleagues/<%= foundColleague.id %>" title=""
+          ><%= foundColleague.fullName %> <% if (foundColleague.ten &&
+          foundColleague.ten == true) { -%> (10pm) <% } else { -%> <% } -%>
+        </a>
+      </p>
+      <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= banksman %></p>
+    </div>
+    <h3>
+      <% if (allocatorinfo.isAllocated == true) { %> De-Kit: <% } else { %>
+      <a href="/allocator/<%= allocatorinfo.id %>/dekitshow">De-kit:</a>
+      <% } %>
+    </h3>
+    <% var dekit = 0; %>
+    <div class="newtable">
+      <% foundColleague.forEach(function(foundColleague){ %> <%
+      foundDekit.forEach(function(foundDekit){ %> <% if
+      (foundDekit.author.id.equals(allocatorinfo.id) && foundDekit.colleagueId
+      === foundColleague.id) { %> <% dekit++; %>
+      <p class="colleagues">
+        <a href="/colleagues/<%= foundColleague.id %>" title=""
+          ><%= foundColleague.fullName %> <% if (foundColleague.ten &&
+          foundColleague.ten == true) { -%> (10pm) <% } else { -%> <% } -%>
+        </a>
+      </p>
+      <% } %> <% }); %> <% }); %>
+      <p class="colleaguestotal noprint"><%= dekit %></p>
+    </div>
+    <!-- <h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Racking:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/rackingshow">Racking:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundRacking.forEach(function(foundRacking){ %>
+		<%# if (foundRacking.author.id.equals(allocatorinfo.id) && foundRacking.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %> -->
+  </div>
+  <!-- <div class="dekit"> -->
+  <!-- DEKIT HERE -->
+  <!-- Recoup commented out -->
+  <!-- <h3> -->
+  <%# if (allocatorinfo.isAllocated == true) { %>
+  <!-- Recoup: -->
+  <%# } else { %>
+  <!-- <a href="/allocator/<%#= allocatorinfo.id %>/chill_pickshow">Recoup:</a> -->
+  <%# } %>
+  <!-- </h3> -->
+  <%# modosit %> <%# foundColleague.forEach(function(foundColleague){ %> <%#
+  foundChillPick.forEach(function(foundChillPick){ %> <%# if
+  (foundChillPick.author.id.equals(allocatorinfo.id) &&
+  foundChillPick.colleagueId === foundColleague.id) { %>
+  <!-- <p><a href="/colleagues/<%# foundColleague.id %>" title=""><%# foundColleague.fullName %></a></p> -->
+  <%# } %> <%# }); %> <%# }); %> <%# modosit %>
+  <!-- <h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Inbound clerk:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/cscshow">Inbound clerk:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundCsc.forEach(function(foundCsc){ %>
+		<%# if (foundCsc.author.id.equals(allocatorinfo.id) && foundCsc.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %>
+		<h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Outbound clerk:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/vlsshow">Outbound clerk:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundVls.forEach(function(foundVls){ %>
+		<%# if (foundVls.author.id.equals(allocatorinfo.id) && foundVls.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %>
+		<h3>
+		<%# if (allocatorinfo.isAllocated == true) { %>
+		Hygiene:
+		<%# } else { %>
+		<a href="/allocator/<%#= allocatorinfo.id %>/hygieneshow">Hygiene:</a>
+		<%# } %>
+		</h3>
+		<%#  foundColleague.forEach(function(foundColleague){ %>
+		<%# foundHygiene.forEach(function(foundHygiene){ %>
+		<%# if (foundHygiene.author.id.equals(allocatorinfo.id) && foundHygiene.colleagueId === foundColleague.id) { %>
+		<p><a href="/colleagues/<%#= foundColleague.id %>" title=""><%#= foundColleague.fullName %></a></p>
+		<%# } %>
+		<%# }); %>
+		<%# }); %> -->
+  <!-- </div> -->
+</div>
+<br />
+<div class="container">
+  <div class="col-sm6 col-md-4 col-md-offset-4 col-sm-offset-3">
+    <p class="noprint">
+      <%= picker+driver+training+loading+dekit+tipmen+banksman+counterBalance %>
+      Colleagues in total.
+    </p>
+    <%if (currentUser && allocatorinfo.isAllocated == true &&
+    currentUser.isAdmin) { %>
+    <div class="form-group">
+      <form
+        action="/allocator/<%= allocatorinfo._id %>?_method=DELETE"
+        method="POST"
+      >
+        <button class="btn btn-primary btn-block goldblack">Delete</button>
+      </form>
+    </div>
+    <%}else if (currentUser && currentUser.isAdmin){%>
+    <div class="form-group">
+      <form action="/allocator/<%= allocatorinfo._id %>" method="POST">
+        <input
+          type="submit"
+          class="btn btn-primary btn-block blackgold"
+          value="Automatic job allocation"
+        />
+      </form>
+    </div>
+    <hr class="style-four" />
+    <div class="form-group">
+      <form
+        action="/allocator/<%= allocatorinfo._id %>?_method=DELETE"
+        method="POST"
+      >
+        <button class="btn btn-primary btn-block goldblack">Delete</button>
+      </form>
+    </div>
+    <%}%>
+  </div>
+</div>
+<% include ../partials/footer %>

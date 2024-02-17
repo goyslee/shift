@@ -1,0 +1,537 @@
+<% include ../partials/header %>
+<% include ../partials/header2 %>
+<div class="container">
+    <div class="row">
+        <div class="col md-12 col-xs-12">
+<h1 class="truckers">Update &nbsp;<span class="truckerscolor"> <%= `${colleague.firstName} ${colleague.lastName}` %> 's
+        &nbsp;</span> Details</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form action="/colleagues/<%= colleague._id %>?_method=PUT" method="POST">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <label>Hours (if less than 8)</label>
+                    <input class="form-control myinput" type="text" name="colleague[actualHours]"
+                        value="<%= colleague.actualHours %>">
+                    <hr>
+                    <button class="btn btn-primary btn-block blackgold">Update</button>
+                    <a class="btn btn-primary btn-block goldblack" href="/">Back</a>
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+           
+        <!-- tablerow.organization -->
+        <div style="font-size: 1.5em; color:rgb(214, 138, 68);" class="truckers">
+        <h2 style="font-weight: bold;">Current Skills:</h2>
+            <% for(var prop in colleague){ %>
+            <%if(colleague[prop] === true && colleague.position != "Warehouse Team Manager" && colleague.position != "Shift Leader"){ %>
+            <% if (prop == "hygiene") { -%>
+            <%prop = " "%>
+            <% } %>
+            <% if (prop == "isIn" || prop == "holiday" || prop == "absence" || prop[0] == "$" || prop == "isAllocated") { -%>
+            <%prop = " "%>
+            <%}%>
+            <% if (prop == "trucks") { -%>
+            <%prop = "Reach Truck "%>
+            <% } %>
+            <% if (prop == "counterBalance") { -%>
+            <%prop = "Counter Balance "%>
+            <% } %>
+            <% if (prop == "firstAider") { -%>
+            <%prop = "First Aider "%>
+            <% } %>
+            <% if (prop == "chill_pick") { -%>
+            <%prop = "Chill Pick "%>
+            <% } %>
+            <% if (prop) { -%>
+            <span class="smallfont"><%- `${prop.toUpperCase()} - ` %></span>
+            <% } else { -%>
+
+            <% } -%>
+            <%}%>
+    <%}%>
+        
+            </div>
+        </div>
+</div>
+<!-- more work needed -->
+
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>First Name</label>
+                <input class="form-control myinput" type="text" name="colleague[firstName]"
+                    value="<%= colleague.firstName %>">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control myinput" type="text" name="colleague[lastName]"
+                    value="<%= colleague.lastName %>">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group ">
+                <label>User ID</label>
+                <input class="form-control myinput" type="text" name="colleague[userNumber]"
+                    value="<%= colleague.userNumber %>">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group ">
+                <label>Start Date</label>
+                <input class="form-control myinput" type="text" name="colleague[startDate]"
+                    value="<%= colleague.startDate %>">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group ">
+                <label>Position (Select fom dropdown)</label>
+                <select class="form-control myinput" name="colleague[position]">
+                    <% var pos = ["Warehouse Operative", "Hygiene Colleague", "Warehouse Team Manager", "Shift Leader"]; %>
+                    <option class="optmy" value="<%= colleague.position %>"><%= colleague.position %></option>
+                    <% for (let i = 0; i < pos.length; i++) {  %>
+                    <% if (pos[i] === colleague.position) { %>
+                    <% var index = pos.indexOf(pos[i]); %>
+                    <% if (index !== -1) {  %>
+                    <% pos[index] = "";  %>
+                    <% } %>
+                    <% } %>
+                    <option value="<%= pos[i] %>"><%= pos[i] %></option>
+                    <% }; %>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Company (Select fom dropdown)</label>
+                <select class="form-control myinput" name="colleague[organization]">
+                    <% var org = ["Permanent", "Agency"]; %>
+                    <option value="<%= colleague.organization %>"><%= colleague.organization %></option>
+                    <% for (let k = 0; k < org.length; k++) {  %>
+                    <% if (org[k] === colleague.organization) { %>
+                    <% var index = org.indexOf(org[k]); %>
+                    <% if (index !== -1) {  %>
+                    <% org[index] = "";  %>
+                    <% } %>
+                    <% } %>
+                    <option value="<%= org[k] %>"><%= org[k] %></option>
+                    <% }; %>
+                </select>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <label>Shift (Select fom dropdown)</label>
+            <select class="form-control myinput" name="colleague[shift]">
+                <% var sh = ["Earlies", "Middles", "Nights"]; %>
+                <option value="<%= colleague.shift %>"><%= colleague.shift %></option>
+                <% for (let l = 0; l < sh.length; l++) {  %>
+                <% if (sh[l] === colleague.shift) { %>
+                <% var index = sh.indexOf(sh[l]); %>
+                <% if (index !== -1) {  %>
+                <% sh[index] = "";  %>
+                <% } %>
+                <% } %>
+                <option value="<%= sh[l] %>"><%= sh[l] %></option>
+                <% }; %>
+            </select>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group ">
+                <label>Team</label>
+                <input class="form-control myinput" type="text" name="colleague[team]" value="<%= colleague.team %>">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group ">
+                <label>Additional informations</label>
+                <input class="form-control myinput" type="text" name="colleague[colleagueinfo]"
+                    value="<%= colleague.colleagueinfo %>">
+            </div>
+        </div>
+    </div>
+    </form>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <% if (colleague.firstAider==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/fa?_method=PUT" method="POST">
+                        <h4 class="center" for="">First Aider<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[firstAider]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to First Aiders group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/fa?_method=PUT" method="POST">
+                            <h4 class="center">First Aider<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[firstAider]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from First Aiders group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.trucks==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/rt?_method=PUT" method="POST">
+                        <h4 class="center" for="">Reach Truck<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[trucks]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Reach truck drivers group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/rt?_method=PUT" method="POST">
+                            <h4 class="center" for="">Reach Truck<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[trucks]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Reach truck drivers group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.pick==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/pk?_method=PUT" method="POST">
+                        <h4 class="center" for="">Pick<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[pick]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Pickers group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/pk?_method=PUT" method="POST">
+                            <h4 class="center" for="">Pick<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[pick]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Pickers group">
+                            </p>
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <% if (colleague.scissor_lift==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/sc?_method=PUT" method="POST">
+                        <h4 class="center" for="">Scissor Lift<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[scissor_lift]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Scissor Lift trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/sc?_method=PUT" method="POST">
+                            <h4 class="center">Scissor Lift<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[scissor_lift]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from First Aiders group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.ambient_pick==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/am?_method=PUT" method="POST">
+                        <h4 class="center" for="">Ambient Pick<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[ambient_pick]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Ambient pick trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/am?_method=PUT" method="POST">
+                            <h4 class="center" for="">Ambient Pick<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[ambient_pick]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Ambient pick trained group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.loading==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/lo?_method=PUT" method="POST">
+                        <h4 class="center" for="">Loading<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[loading]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Loading trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/lo?_method=PUT" method="POST">
+                            <h4 class="center" for="">Loading<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[loading]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Loading trained group">
+                            </p>
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <% if (colleague.tip==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/tip?_method=PUT" method="POST">
+                        <h4 class="center" for="">Tip<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[tip]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Receiving trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/tip?_method=PUT" method="POST">
+                            <h4 class="center">Tip<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[tip]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Receiving trained group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.dekit==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/de?_method=PUT" method="POST">
+                        <h4 class="center" for="">Dekit<span><br>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[dekit]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Dekit trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/de?_method=PUT" method="POST">
+                            <h4 class="center">Dekit<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[dekit]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Dekit trained group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.chill_pick==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/ch?_method=PUT" method="POST">
+                        <h4 class="center" for="">Chill Pick<br><span>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[chill_pick]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Chill Pick trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/ch?_method=PUT" method="POST">
+                            <h4 class="center" for="">Chill Pick<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[chill_pick]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Chill Pick trained group">
+                            </p>
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <% if (colleague.counterBalance==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/cb?_method=PUT" method="POST">
+                        <h4 class="center" for="">Counter Balance<span><br>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[counterBalance]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Counter Balance trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/cb?_method=PUT" method="POST">
+                            <h4 class="center">Counter Balance<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[counterBalance]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Counter Balance trained group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.recoup==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/re?_method=PUT" method="POST">
+                        <h4 class="center" for="">Recoup<span><br>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[recoup]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Recoup trained group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/re?_method=PUT" method="POST">
+                            <h4 class="center">Recoup<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[recoup]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Recoup trained group">
+                            </p>
+                        </form>
+                        <% } %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+
+            <div class="form-group">
+                <% if (colleague.training==false) { -%>
+                <div class="truckers">
+                    <form class="myform" action="/shift/<%= colleague._id %>/skills/tr?_method=PUT" method="POST">
+                        <h4 class="center" for="">Training<span><br>(X)</span></h4>
+                        <br>
+                        <p><input class="check hidden form-control" checked="checked"
+                                class="<%= colleague.firstName + " " + colleague.lastName %>" type="checkbox"
+                                name="colleague[training]"></p>
+                        <p><input type="submit" class="btn blackgold-origin" value="Add Skill"
+                                title="Click here if you want to add this colleague to Trainer group."></p>
+                    </form>
+                    <% } else { -%>
+                    <div class="truckers1">
+                        <form class="myform" action="/shift/<%= colleague._id %>/skills/tr?_method=PUT" method="POST">
+                            <h4 class="center" for="">Training<br><span>(trained)</span></h4>
+                            <br>
+                            <p><input class="check hidden" class="<%= colleague.firstName + " " + colleague.lastName %>"
+                                    type="checkbox" name="colleague[training]"></p>
+                            <p><input type="submit" class="btn goldblack-origin" value="Remove Skill"
+                                    title="Click here if you want to remove this colleague from Trainer group">
+                            </p>
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+<% include ../partials/footer %>

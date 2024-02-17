@@ -1,0 +1,330 @@
+<% include ../partials/header %>
+<% include ../partials/header3 %>
+<h1>Update <span class="darker"><%= colleague.firstName + " " + colleague.lastName %>'s</span> Details</h1>
+<div class="container">
+    
+    <form action="/colleagues/<%= colleague._id %>?_method=PUT" method="POST">
+        <div class="col-sm6 col-md-4 col-md-offset-4 col-sm-offset-3 affix pull-right" style="width: 30%; margin: 55px auto;">
+            <div class="form-group">
+                <label>Hours (if less than 8)</label>
+                <input class="form-control myinput" type="text" name="colleague[actualHours]" value="<%= colleague.actualHours %>"> <hr>         
+                <button class="btn btn-primary btn-block blackgold">Update</button>
+                <a class="btn btn-primary btn-block goldblack" href="/">Back</a>
+            </div>
+        </div>
+        
+    </div>
+    <!-- more work needed -->
+    <div class="col-sm6 col-md-3 col-md-offset-3 col-sm-offset-3 pull-right"style="width: 30%; margin: 55px auto;">
+        <label>Skills</label>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Trucks</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.trucks == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[trucks]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][trucks]" value="<%= colleague.rating[0].trucks %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Chill Pick</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.scissor_lift == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[scissor_lift]" >
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][scissor_lift]" value="<%= colleague.rating[0].scissor_lift %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Pick</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.pick == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[pick]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][pick]" value="<%= colleague.rating[0].pick %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Ambient pick</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.ambient_pick == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[ambient_pick]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][ambient_pick]" value="<%= colleague.rating[0].ambient_pick %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Loading</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.loading == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[loading]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][loading]" value="<%= colleague.rating[0].loading %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Tip</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.tip == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[tip]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][tip]" value="<%= colleague.rating[0].tip %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>De-Kit</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.dekit == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[dekit]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][dekit]" value="<%= colleague.rating[0].dekit %>">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <label>Trucks</label>
+            <input class="form-control check" type="checkbox" name="colleague[csc]" placeholder="CSC (Type 'true' or 'false')">
+        </div> -->
+        <div class="truckers">
+            <div class="form-group">
+                <label>RT</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.rt == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[rt]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][rt]" value="<%= colleague.rating[0].rt %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Chill Pick</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.chill_pick == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[chill_pick]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][chill_pick]" value="<%= colleague.rating[0].chill_pick %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>CounterBalance/Countechill_pickalance</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.counterBalance == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[counterBalance]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][counterBalance]" value="<%= colleague.rating[0].counterBalance %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Racking</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.racking == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[racking]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][racking]" value="<%= colleague.rating[0].racking %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Checking(was recoup)</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.recoup == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[recoup]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][recoup]" value="<%= colleague.rating[0].recoup %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Banksman</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.banksman == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[banksman]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][banksman]" value="<%= colleague.rating[0].banksman %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Trainer</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.trainer == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[trainer]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][trainer]" value="<%= colleague.rating[0].trainer %>">
+                </div>
+            </div>
+        </div>
+        <div class="truckers">
+            <div class="form-group">
+                <label>Union</label>
+                <input class="form-control check" type="checkbox" 
+                <% if(colleague.union == true) { %> 
+                checked="checked" 
+                <% } else { %>
+                <% } %>
+                name="colleague[union]">
+                <div class="form-group checkrating">
+                    <label>1-10</label>
+                    <input class="form-control" type="text" name="colleague[rating][union]" value="<%= colleague.rating[0].union %>">
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        <div class="col-sm6 col-md-3 col-md-offset-3 col-sm-offset-3 pull-right"style="width: 30%; margin: 55px auto;">
+            <div class="form-group">
+                <label>First Name</label>
+                <input class="form-control myinput" type="text" name="colleague[firstName]" value="<%= colleague.firstName %>">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control myinput" type="text" name="colleague[lastName]" value="<%= colleague.lastName %>">
+            </div>
+            <div class="form-group ">
+                <label>User ID</label>
+                <input class="form-control myinput" type="text" name="colleague[userNumber]" value="<%= colleague.userNumber %>">
+            </div>
+            <div class="form-group ">
+                <label>Start Date</label>
+                <input class="form-control myinput" type="text" name="colleague[startDate]" value="<%= colleague.startDate %>">
+            </div>
+            <div class="form-group ">
+            <label>Position (Select fom dropdown)</label>
+            <select class="form-control myinput" name="colleague[position]">
+            <% var pos = ["Warehouse Operative", "Hygiene Colleague", "Warehouse Team Manager", "Shift Leader"]; %>
+            <option value="<%= colleague.position %>"><%= colleague.position %></option>
+                <% for (let i = 0; i < pos.length; i++) {  %>
+                    <% if (pos[i] === colleague.position) { %>
+                          <% var index = pos.indexOf(pos[i]); %>
+                            <% if (index !== -1) {  %>
+                               <% pos[index] = "";  %>
+                           <% } %>                           
+                       <% } %>  
+                        <option value="<%= pos[i] %>"><%= pos[i] %></option>                
+                <% }; %>
+            </select>
+            </div>
+            <div class="form-group">
+            <label>Company (Select fom dropdown)</label>    
+            <select class="form-control myinput" name="colleague[organization]">
+            <% var org = ["JS", "MACH"]; %>
+            <option value="<%= colleague.organization %>"><%= colleague.organization %></option>
+                <% for (let k = 0; k < org.length; k++) {  %>
+                    <% if (org[k] === colleague.organization) { %>
+                          <% var index = org.indexOf(org[k]); %>
+                            <% if (index !== -1) {  %>
+                               <% org[index] = "";  %>
+                           <% } %>                           
+                       <% } %>  
+                        <option value="<%= org[k] %>"><%= org[k] %></option>                
+                <% }; %>
+            </select>
+            </div>
+            <label>Shift (Select fom dropdown)</label>
+            <select class="form-control myinput" name="colleague[shift]">
+            <% var sh = ["Earlies", "Middles", "Nights"]; %>
+            <option value="<%= colleague.shift %>"><%= colleague.shift %></option>
+                <% for (let l = 0; l < sh.length; l++) {  %>
+                    <% if (sh[l] === colleague.shift) { %>
+                          <% var index = sh.indexOf(sh[l]); %>
+                            <% if (index !== -1) {  %>
+                               <% sh[index] = "";  %>
+                           <% } %>                           
+                       <% } %>  
+                        <option value="<%= sh[l] %>"><%= sh[l] %></option>                
+                <% }; %>
+            </select>
+            <div class="form-group ">
+                <label>Team</label>
+                <input class="form-control myinput" type="text" name="colleague[team]" value="<%= colleague.team %>">
+            </div>
+            <div class="form-group ">
+                <label>Additional informations</label>
+                <input class="form-control myinput" type="text" name="colleague[colleagueinfo]" value="<%= colleague.colleagueinfo %>">
+            </div>
+        </div>
+        
+        
+    </form>
+</div>
+</div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,348 @@
+<% include ../partials/header %>
+<% include ../partials/header2 %>
+<h1>Update <span class="darker"><%= colleague.firstName + " " + colleague.lastName %>'s</span> Details</h1>
+<div class="container">
+    
+    <form action="/colleagues/<%= colleague._id %>?_method=PUT" method="POST">
+        <div class="col-sm6 col-md-4 col-md-offset-4 col-sm-offset-3 affix pull-right" style="width: 30%; margin: 55px auto;">
+            <div class="form-group">
+                <label>Hours (if less than 8))</label>
+                <input class="form-control" type="text" name="colleague[actualHours]" value="<%= colleague.actualHours %>"> <hr>         
+                <button class="btn btn-primary btn-block blackgold">Update</button>
+                <a class="btn btn-primary btn-block goldblack" href="/">Back</a>
+            </div>
+        </div>
+        
+    </div>
+    <div class="container">
+        <div class="col-sm6 col-md-3 col-md-offset-3 col-sm-offset-3 pull-right" style="width: 30%; margin: 55px auto;">
+            <label style="margin-bottom: 195%;"></label>
+            
+            <div class="form-group">
+                <label>Trucks trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Trucks (1-10)" name="colleague[rating][trucks]" value="<%= colleague.rating[0].trucks %>">
+            </div>
+            <div class="form-group">
+                <label>Scissor Lift trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Chill Pick (1-10)" name="colleague[rating][scissor_lift]" value="<%= colleague.rating[0].scissor_lift %>">
+            </div>
+            <div class="form-group">
+                <label>Pick trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Pick (1-10)" name="colleague[rating][pick]" value="<%= colleague.rating[0].pick %>">
+            </div>
+            <div class="form-group">
+                <label>Outloading trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Outloading (1-10)" name="colleague[rating][loading]" value="<%=colleague.rating[0].loading %>">
+            </div>
+            <div class="form-group">
+                <label>Tip trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Tip (1-10)" name="colleague[rating][tip]" value="<%= colleague.rating[0].tip %>">
+            </div>
+            <div class="form-group">
+                <label>DEKIT trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="DEKIT (1-10)" name="colleague[rating][dekit]" value="<%= colleague.rating[0].dekit %>">
+            </div>
+            <div class="form-group">
+                <label>CSC trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" placeholder="CSC (1-10)"name="colleague[rating][csc]" value="<%= colleague.rating[0].csc %>">
+            </div>
+            <div class="form-group">
+                <label>R/T trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="R/T (1-10)" name="colleague[rating][rt]" value="<%= colleague.rating[0].rt %>">
+            </div>
+            <div class="form-group">
+                <label>R/B trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="R/B (1-10)" name="colleague[rating][chill_pick]" value="<%= colleague.rating[0].chill_pick %>">
+            </div>
+            <div class="form-group">
+                <label>CounterBalance trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="CounterBalance (1-10)" name="colleague[rating][counterBalance]" value="<%= colleague.rating[0].counterBalance %>">
+            </div>
+            <div class="form-group">
+                <label>Racking trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Racking (1-10)" name="colleague[rating][racking]" value="<%= colleague.rating[0].racking %>">
+            </div>
+            <div class="form-group">
+                <label>Manual Pick trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Manual Pick (1-10)" name="colleague[rating][recoup]" value="<%= colleague.rating[0].recoup %>">
+            </div>
+            <div class="form-group">
+                <label>Banksman trained (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Banksman (1-10)" name="colleague[rating][banksman]" value="<%= colleague.rating[0].banksman %>">
+            </div>
+            <div class="form-group">
+                <label>Trainer (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Trainer (1-10)" name="colleague[rating][training]" value="<%= colleague.rating[0].training %>">
+            </div>
+            <div class="form-group">
+                <label>Union Rep (Update this colleague's rating on this role.)</label>
+                <input class="form-control" type="text" placeholder="Union Rep (1-10)" name="colleague[rating][union]" value="<%= colleague.rating[0].union %>">
+            </div>
+        </div>
+        <div class="col-sm6 col-md-3 col-md-offset-3 col-sm-offset-3 pull-right"style="width: 30%; margin: 55px auto;">
+            <div class="form-group">
+                <label>First Name</label>
+                <input class="form-control" type="text" name="colleague[firstName]" value="<%= colleague.firstName %>">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control" type="text" name="colleague[lastName]" value="<%= colleague.lastName %>">
+            </div>
+            <div class="form-group">
+                <label>User ID</label>
+                <input class="form-control" type="text" name="colleague[userNumber]" value="<%= colleague.userNumber %>">
+            </div>
+            <div class="form-group">
+                <label>Start Date</label>
+                <input class="form-control" type="text" name="colleague[startDate]" value="<%= colleague.startDate %>">
+            </div>
+            <div class="form-group">
+            <label>Position (Select fom dropdown)</label>
+            <select class="form-control" name="colleague[position]">
+            <% var pos = ["Warehouse Team Manager", "Shift Leader", "Quad", "Step Up", "Warehouse Operative", "Hygiene Colleague"]; %>
+            <option value="<%= colleague.position %>"><%= colleague.position %></option>
+                <% for (let i = 0; i < pos.length; i++) {  %>
+                    <% if (pos[i] === colleague.position) { %>
+                          <% var index = pos.indexOf(pos[i]); %>
+                            <% if (index !== -1) {  %>
+                               <% pos[index] = "";  %>
+                           <% } %>                           
+                       <% } %>  
+                        <option value="<%= pos[i] %>"><%= pos[i] %></option>                
+                <% }; %>
+            </select>
+            </div>
+            <div class="form-group">
+                <label>Organization</label>
+                <input class="form-control" type="text" name="colleague[organization]" value="<%= colleague.organization %>">
+            </div>
+            <div class="form-group">
+                <label>Team</label>
+                <input class="form-control" type="text" name="colleague[team]" value="<%= colleague.team %>">
+            </div>
+            <div class="form-group">
+                <label>Additional informations</label>
+                <input class="form-control" type="text" name="colleague[colleagueinfo]" value="<%= colleague.colleagueinfo %>">
+            </div>
+            <div class="form-group">
+                <label>Trucks trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[trucks]" value="<%= colleague.trucks %>">
+            </div>
+            <div class="form-group">
+                <label>Chill Pick trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[scissor_lift]" value="<%= colleague.scissor_lift %>">
+            </div>
+            <div class="form-group">
+                <label>Pick trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[pick]" value="<%= colleague.pick %>">
+            </div>
+            <div class="form-group">
+                <label>Outloading trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[loading]" value="<%=colleague.loading %>">
+            </div>
+            <div class="form-group">
+                <label>Tip trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[tip]" value="<%= colleague.tip %>">
+            </div>
+            <div class="form-group">
+                <label>DEKIT trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[dekit]" value="<%= colleague.dekit %>">
+            </div>
+            <div class="form-group">
+                <label>CSC trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[csc]" value="<%= colleague.csc %>">
+            </div>
+            <div class="form-group">
+                <label>R/T trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[rt]" value="<%= colleague.rt %>">
+            </div>
+            <div class="form-group">
+                <label>R/B trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[chill_pick]" value="<%= colleague.chill_pick %>">
+            </div>
+            <div class="form-group">
+                <label>CounterBalance trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[counterBalance]" value="<%= colleague.counterBalance %>">
+            </div>
+            <div class="form-group">
+                <label>Racking trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[racking]" value="<%= colleague.racking %>">
+            </div>
+            <div class="form-group">
+                <label>Manual Pick trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[recoup]" value="<%= colleague.recoup %>">
+            </div>
+            <div class="form-group">
+                <label>Banksman trained (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[banksman]" value="<%= colleague.banksman %>">
+            </div>
+            <div class="form-group">
+                <label>Trainer (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[training]" value="<%= colleague.training %>">
+            </div>
+            <div class="form-group">
+                <label>Union Rep (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[union]" value="<%= colleague.union %>">
+            </div>
+            <div class="form-group">
+                <label>Ambient pick (Type <span class='darker'>"true"</span> if yes, leave it as it is otherwise.)</label>
+                <input class="form-control" type="text" name="colleague[ambient_pick]" value="<%= colleague.union %>">
+            </div>
+        </div>
+        
+        
+    </form>
+</div>
+</div>
+</div>
+
+<% include ../partials/footer %>
+
+<div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][trucks]" value="
+                        <% if(colleague.rating[0] && colleague.rating[0].trucks == true) { %>
+                        <%= colleague.rating[0].trucks %>
+                        <% } else { %>
+                        <% } %>  
+                        ">         
+
+                        <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][scissor_lift]" value=" 
+                            <% if(colleague.rating[0] && colleague.rating[0].scissor_lift == true) { %>
+                            <%= colleague.rating[0].scissor_lift %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                         <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][pick]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].pick == true) { %>
+                            <%= colleague.rating[0].pick %>
+                            <% } else { %>
+                            <% } %>
+                             ">
+                             </div>
+
+                              <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][ambient_pick]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].ambient_pick == true) { %>
+                            <%= colleague.rating[0].ambient_pick %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                         <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][loading]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].loading == true) { %>
+                            <%= colleague.rating[0].loading %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                        <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][tip]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].tip == true) { %>
+                            <%= colleague.rating[0].tip %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                         <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][dekit]"  value="
+                            <% if(colleague.rating[0] && colleague.rating[0].dekit == true) { %>
+                            <%= colleague.rating[0].dekit %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                        <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][rt]" value=" 
+                            <% if(colleague.rating[0] && colleague.rating[0].rt == true) { %>
+                            <%= colleague.rating[0].rt %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                        <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][chill_pick]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].chill_pick == true) { %>
+                            <%= colleague.rating[0].chill_pick %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                         <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][counterBalance]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].counterBalance == true) { %>
+                            <%= colleague.rating[0].counterBalance %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                         <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][racking]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].racking == true) { %>
+                            <%= colleague.rating[0].racking %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                        <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][recoup]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].recoup == true) { %>
+                            <%= colleague.rating[0].recoup %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                         <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][banksman]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].banksman == true) { %>
+                            <%= colleague.rating[0].banksman %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                        <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][training]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].training == true) { %>
+                            <%= colleague.rating[0].training %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>
+
+                         <div class="form-group checkrating">
+                            <label>1-10</label>
+                            <input class="form-control" type="text" name="colleague[rating][union]" value="
+                            <% if(colleague.rating[0] && colleague.rating[0].union == true) { %>
+                            <%= colleague.rating[0].union %>
+                            <% } else { %>
+                            <% } %>
+                            ">
+                        </div>

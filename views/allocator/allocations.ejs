@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+<% include ../partials/header2 %>
+<h1>Deployment Sheets</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-1">
+			<h1 class="well">Earlies</h1>
+			<% foundAllocation.forEach(function(allocation){ %>
+			<% if (allocation.isAllocated == false && allocation.shift === "Earlies") { -%>
+			<a href="allocations/allocationshow/<%= allocation._id %>"><h1 class="darker1"><%= allocation.name %> </h1></a>
+			<% } else { -%>
+			<% } -%>
+			<% }) %>
+		</div>
+		<div class="col-md-4 col-sm-1">
+			<h1 class="well">Middles</h1>
+			<% foundAllocation.forEach(function(allocation){ %>
+			<% if (allocation.isAllocated == false && allocation.shift === "Middles") { -%>
+			<a href="allocations/allocationshow/<%= allocation._id %>"><h1 class="darker1"><%= allocation.name %> </h1></a>
+			<% } else { -%>
+			<% } -%>
+			<% }) %>
+		</div>
+		<div class="col-md-4 col-sm-1">
+			<h1 class="well">Nights</h1>
+			<% foundAllocation.forEach(function(allocation){ %>
+			<% if (allocation.isAllocated == false && allocation.shift === "Nights") { -%>
+			<a href="allocations/allocationshow/<%= allocation._id %>"><h1 class="darker1"><%= allocation.name %> </h1></a>
+			<% } else { -%>
+			<% } -%>
+			<% }) %>
+		</div>
+	</div>
+</div>
+<% include ../partials/footer %>

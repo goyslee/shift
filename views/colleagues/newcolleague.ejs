@@ -1,0 +1,246 @@
+<% include ../partials/header %>
+<% include ../partials/header2 %>
+<div class="container">
+    <h4>Add Colleague to Database</h4>
+    <form action="/colleagues" method="POST" id="positionForm">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="form-group">
+                    <button class="btn btn-danger btn-block blackgold">Submit</button>
+                    <br>
+                    <a class="btn btn-warning btn-block goldblack" href="/">Back</a>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>First Aider</label>
+                <input class="form-control mycheck check" type="checkbox" name="colleague[firstAider]">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>First Name</label>
+                <input class="form-control myinput" type="text" name="colleague[firstName]" placeholder="First Name">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control myinput" type="text" name="colleague[lastName]" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>User ID</label>
+                <input class="form-control myinput" type="text" name="colleague[userNumber]" placeholder="User ID">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Start Date</label>
+                <input class="form-control myinput" type="date" name="colleague[startDate]" placeholder="Start Date">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Position (Select fom dropdown)</label>
+                <select class="form-control myinput" name="colleague[position]">
+                    <option value="Warehouse Operative">Warehouse Operative</option>
+                    <option value="Hygiene Colleague">Hygiene Colleague</option>
+                    <option value="Warehouse Team Manager">Warehouse Team Manager</option>
+                    <option value="Shift Leader">Shift Leader</option>
+                    <!-- <option value="Quad">Quad</option>
+                        <option value="Step Up">Step Up</option> -->
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Organization (Select fom dropdown)</label>
+                <select class="form-control myinput" name="colleague[orgainzation]">
+                    <option value="JS">Permanent</option>
+                    <option value="Mach">Agency</option>
+                    <!-- <option value="Quad">Quad</option>
+                        <option value="Step Up">Step Up</option> -->
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Shift (Select fom dropdown)</label>
+                <select class="form-control myinput" name="colleague[shift]">
+                    <option value="Earlies">Earlies</option>
+                    <option value="Middles">Middles</option>
+                    <option value="Nights">Nights</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Team</label>
+                <input class="form-control myinput" type="text" name="colleague[team]" placeholder="Team">
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="form-group">
+                <label>Additional info, notes</label>
+                <input class="form-control myinput" type="text" name="colleague[colleagueinfo]"
+                    placeholder="additional informations">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Reach Truck</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[trucks]">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Scissor Lift</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[scissor_lift]">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Pick</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[pick]">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Ambient pick</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[ambient_pick]">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Loading</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[loading]">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Tip</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[tip]">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>De-Kit</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[dekit]">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>RT</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[rt]">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Chill Pick</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[chill_pick]">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Counter Balance</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[counterBalance]">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <!-- <div class="truckers">
+                <div class="form-group">
+                    <h4>Racking</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[racking]">
+                </div>
+            </div> -->
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Recoup</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[recoup]">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+        <div class="col-md-4 col-xs-12">
+            <!-- <div class="truckers">
+                <div class="form-group">
+                    <h4>Banksman</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[baler]">
+                </div>
+            </div> -->
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Trainer</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[trainer]">
+                    <%#<div class="form-group checkrating">%>
+                    <%#<label>1-10</label>%>
+                    <%#<input class="form-control" type="text" name="colleague[rating][trainer]">%>
+                    <%#</div>%>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-md-4 col-xs-12">
+            <div class="truckers">
+                <div class="form-group">
+                    <h4>Union</h4>
+                    <input class="form-control check" type="checkbox" name="colleague[union]">
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+</form>
+<% include ../partials/footer %>
